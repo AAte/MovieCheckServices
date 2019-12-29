@@ -8,6 +8,7 @@
         <module>netflix-eureka-naming-service</module>
         <module>movie-service</module>
         <module>list-service</module>
+        <module>review-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

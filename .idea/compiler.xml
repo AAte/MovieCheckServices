@@ -11,6 +11,7 @@
         <module name="zuul-api-gateway-service" />
         <module name="netflix-eureka-naming-service" />
         <module name="movie-service" />
+        <module name="review-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
       <module name="list-service" options="-parameters" />
       <module name="movie-service" options="-parameters" />
       <module name="netflix-eureka-naming-service" options="-parameters" />
+      <module name="review-service" options="-parameters" />
       <module name="zuul-api-gateway-service" options="-parameters" />
     </option>
   </component>

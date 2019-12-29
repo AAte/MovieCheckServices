@@ -133,7 +133,8 @@ public class MovieListController {
         try {
             MovieList movieList = movieListService.findMovieListByUserAndType(type,movieListService.getUserEmail());
             movieListService.removeMovieFromList(movieList,imdbId);
-            return ResponseModel.builder().data(movieList)
+            MovieListEnriched movieListEnriched = movieListService.getMovieListEnriched(movieList);
+            return ResponseModel.builder().data(movieListEnriched)
                     .validationModel(ValidationModel.builder().code(201).message("Success").build())
                     .build();
         } catch (Exception e) {
