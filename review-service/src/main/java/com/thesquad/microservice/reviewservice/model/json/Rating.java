@@ -1,4 +1,4 @@
-package com.thesquad.microservice.ratingsservice.model.json;
+package com.thesquad.microservice.reviewservice.model.json;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

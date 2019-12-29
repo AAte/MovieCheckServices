@@ -1,7 +1,7 @@
-package com.thesquad.microservice.listservice.client;
+package com.thesquad.microservice.reviewservice.client;
 
-import com.thesquad.microservice.listservice.model.ResponseModel;
-import com.thesquad.microservice.listservice.model.json.Movie;
+import com.thesquad.microservice.reviewservice.model.ResponseModel;
+import com.thesquad.microservice.reviewservice.model.json.Movie;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
-package com.thesquad.microservice.ratingsservice.persistence;
+package com.thesquad.microservice.reviewservice.persistence;
 
 
-import com.thesquad.microservice.ratingsservice.model.entities.Review;
+import com.thesquad.microservice.reviewservice.model.entities.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +17,10 @@ public interface ReviewsRepository extends JpaRepository<Review, Long> {
     @Override
     Optional<Review> findById(Long id);
 
-    List<Review> findByImdbID(String imdbId);
+    List<Review> findAllByImdbId(String imdbId);
+
+    List<Review> findAllByMovieNameIgnoreCase(String movieName);
+
+    List<Review> findAllByUserEmail(String userEmail);
 
 }
