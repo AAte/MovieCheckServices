@@ -7,6 +7,7 @@
         <module>zuul-api-gateway-service</module>
         <module>netflix-eureka-naming-service</module>
         <module>movie-service</module>
+        <module>list-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

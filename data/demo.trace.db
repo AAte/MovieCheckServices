@@ -1,0 +1,9 @@
+2019-12-29 00:03:59 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "WRITER VARCHAR(255)": "'Christopher Markus (screenplay by), Stephen McFeely (screenplay by), Stan Lee (based on the Marvel comics by), Jack Kirby (base... (600)"; SQL statement:
+insert into movie (actors, awards, box_office, country, director, dvd, genre, imdbid, imdb_rating, imdb_votes, language, metascore, plot, poster, production, rated, released, response, runtime, title, type, website, writer, year, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2019-12-29 00:04:02 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "WRITER VARCHAR(255)": "'Christopher Markus (screenplay by), Stephen McFeely (screenplay by), Stan Lee (based on the Marvel comics by), Jack Kirby (base... (600)"; SQL statement:
+insert into movie (actors, awards, box_office, country, director, dvd, genre, imdbid, imdb_rating, imdb_votes, language, metascore, plot, poster, production, rated, released, response, runtime, title, type, website, writer, year, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2019-12-29 00:04:27 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "WRITER VARCHAR(255)": "'Christopher Markus (screenplay by), Stephen McFeely (screenplay by), Stan Lee (based on the Marvel comics by), Jack Kirby (base... (600)"; SQL statement:
+insert into movie (actors, awards, box_office, country, director, dvd, genre, imdbid, imdb_rating, imdb_votes, language, metascore, plot, poster, production, rated, released, response, runtime, title, type, website, writer, year, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [22001-200]

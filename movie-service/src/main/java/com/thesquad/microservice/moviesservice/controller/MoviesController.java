@@ -19,6 +19,12 @@ public class MoviesController {
     @Autowired
     private IMovieService movieService;
 
+    @GetMapping("/movies/hello")
+    public String feignTest(){
+        return "Hello";
+    }
+
+
     @GetMapping("/movies/name={title}")
     public ResponseModel<Object> getMovieByName(@PathVariable String title) {
         try {
@@ -94,4 +100,20 @@ public class MoviesController {
                     .build();
         }
     }
+
+    @DeleteMapping("/movies/imdbId/{imdbId}")
+    public ResponseModel<Object> deleteMovieByImdbId(@PathVariable String imdbId) throws MovieNotFoundException{
+        try {
+            Movie movieByImdbId = movieService.findByImdbId(imdbId);
+            movieService.deleteMovie(movieByImdbId);
+            return ResponseModel.builder().data(movieByImdbId)
+                    .validationModel(ValidationModel.builder().code(201).message("Deleted").build())
+                    .build();
+
+        } catch (Exception e) {
+            return ResponseModel.builder().data(null)
+                    .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
+                    .build();
+        }
+    };
 }

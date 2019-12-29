@@ -1,4 +1,4 @@
-package com.thesquad.microservice.moviesservice;
+package com.thesquad.microservice.listservice;
 
 import feign.RequestInterceptor;
 import org.springframework.boot.SpringApplication;
@@ -11,14 +11,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 
-
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class MoviesServiceApplication {
+public class ListServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MoviesServiceApplication.class, args);
+        SpringApplication.run(ListServiceApplication.class, args);
     }
 
     @Configuration
@@ -33,12 +32,10 @@ public class MoviesServiceApplication {
                     .and().oauth2Client()
                     .and().oauth2Login();
         }
-
     }
 
     @Bean
     public RequestInterceptor getServiceFeignClientInterceptor(OAuth2AuthorizedClientService clientService) {
         return new ServiceFeignClientInterceptor(clientService);
     }
-
 }

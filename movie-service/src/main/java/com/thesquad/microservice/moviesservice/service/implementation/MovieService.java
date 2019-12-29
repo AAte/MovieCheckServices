@@ -43,6 +43,12 @@ public class MovieService implements IMovieService {
     }
 
     @Override
+    public void deleteMovie(Movie movie) {
+        moviesRepository.delete(movie);
+    }
+
+
+    @Override
     public Movie findById(Long id) throws MovieNotFoundException {
 
         Optional<Movie> movieOptional = moviesRepository.findById(id);

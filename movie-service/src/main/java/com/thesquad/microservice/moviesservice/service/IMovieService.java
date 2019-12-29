@@ -13,6 +13,8 @@ public interface IMovieService {
     @Async
     void saveMovie(Movie movie);
 
+    void deleteMovie(Movie movie);
+
     Movie findById(Long id) throws MovieNotFoundException;
 
     List<Movie> findAll();
@@ -20,4 +22,6 @@ public interface IMovieService {
     List<Movie> findAllByImdbID(List<String> imdbIds);
 
     Movie findByImdbId(String imdbId) throws MovieNotFoundException;
+
+
 }
