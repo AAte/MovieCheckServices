@@ -35,6 +35,7 @@ public class MoviesController {
                     .build();
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
@@ -50,6 +51,7 @@ public class MoviesController {
                     .build();
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
@@ -65,6 +67,7 @@ public class MoviesController {
                     .build();
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
@@ -80,6 +83,7 @@ public class MoviesController {
                     .build();
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
@@ -95,6 +99,7 @@ public class MoviesController {
                     .build();
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
@@ -111,6 +116,7 @@ public class MoviesController {
                     .build();
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();

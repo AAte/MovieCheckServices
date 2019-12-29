@@ -45,15 +45,20 @@ public class MovieListService implements IMovieListService {
 
     @Override
     public void removeMovieFromList(MovieList movieList, String imdbId) throws MovieNotFoundInMovieListException {
-        Optional<MovieBasicInfo> movieBasicInfo = movieBasicInfoRepository.findByImdbIdAndAndMovieList(imdbId, movieList);
-        if(movieBasicInfo.isPresent()){
-            movieBasicInfoRepository.delete(movieBasicInfo.get());
+        MovieBasicInfo movieBasicInfo = this.findMovieBasicInfoByMovieList(movieList,imdbId);
+        if(movieBasicInfo!=null){
+            movieBasicInfoRepository.delete(movieBasicInfo);
         }else{
             throw new MovieNotFoundInMovieListException("No movie find in movie list with imdbId: " + imdbId);
         }
 
     }
 
+    @Override
+    public MovieBasicInfo findMovieBasicInfoByMovieList(MovieList movieList, String imdbId){
+        Optional<MovieBasicInfo> movieBasicInfo = movieBasicInfoRepository.findByImdbIdAndAndMovieList(imdbId, movieList);
+        return movieBasicInfo.orElse(null);
+    }
     @Override
     public void deleteMovieList(MovieList movieList) {
         movieListRepository.delete(movieList);

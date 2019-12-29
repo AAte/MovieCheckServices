@@ -15,6 +15,8 @@ public interface IMovieListService {
 
     void removeMovieFromList(MovieList movieList, String imdbId) throws MovieNotFoundInMovieListException;
 
+    MovieBasicInfo findMovieBasicInfoByMovieList(MovieList movieList, String imdbId);
+
     void deleteMovieList(MovieList movieList);
 
     MovieList findMovieListById(long id) throws MovieListNotFoundException;

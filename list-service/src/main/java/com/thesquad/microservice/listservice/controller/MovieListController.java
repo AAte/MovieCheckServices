@@ -47,6 +47,7 @@ public class MovieListController {
                     .validationModel(ValidationModel.builder().code(201).message("Success").build())
                     .build();
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
@@ -92,6 +93,7 @@ public class MovieListController {
                         .build();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseModel.builder().data(null)
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
@@ -107,8 +109,12 @@ public class MovieListController {
             }
             ResponseModel<Movie> movieResponseModel = movieServiceProxy.getMovieByImdbId(imdbId);
             Movie movie = movieResponseModel.getData();
-            movieList.getMovies().add(new MovieBasicInfo(movie.getImdbID(), movie.getTitle(), movieList));
-            movieListService.saveMovieList(movieList);
+            MovieBasicInfo movieBasicInfo = movieListService.findMovieBasicInfoByMovieList(movieList,imdbId);
+            if(movieBasicInfo==null){
+                movieBasicInfo = new MovieBasicInfo(movie.getImdbID(), movie.getTitle(), movieList);;
+                movieList.getMovies().add(movieBasicInfo);
+                movieListService.saveMovieList(movieList);
+            }
             MovieListEnriched movieListEnriched = movieListService.getMovieListEnriched(movieList);
             return ResponseModel.builder().data(movieListEnriched)
                     .validationModel(ValidationModel.builder().code(201).message("Success").build())
