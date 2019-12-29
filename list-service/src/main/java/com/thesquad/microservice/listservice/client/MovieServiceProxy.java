@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "netfilx-zuul-api-gateway-server")
+@FeignClient(name = "netfilx-zuul-api-gateway-server", url = "")
 @RibbonClient(name = "movies-service")
 public interface MovieServiceProxy {
 

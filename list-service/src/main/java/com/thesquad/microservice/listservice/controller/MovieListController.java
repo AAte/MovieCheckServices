@@ -33,17 +33,6 @@ public class MovieListController {
     IMovieListService movieListService;
 
 
-    @GetMapping("/lists/test")
-    public String movieTest() {
-       String email = movieListService.getUserEmail();
-        return movieServiceProxy.feignTest();
-    }
-
-    @GetMapping("/movieLists/imdbId/{imdbId}")
-    public ResponseModel<Movie> getMovieByImdbId(@PathVariable String imdbId) {
-        return movieServiceProxy.getMovieByImdbId(imdbId);
-    }
-
     @GetMapping("/lists/all")
     public ResponseModel<Object> getEveryMovieList(){
 
@@ -51,10 +40,7 @@ public class MovieListController {
             List<MovieList> everyMovieListByUser = movieListService.findEveryMovieListByUser(movieListService.getUserEmail());
             List<MovieListEnriched> everyMovieListEnriched= new ArrayList<>();
             for (MovieList movieList:everyMovieListByUser) {
-                List<String> imdbIds = new ArrayList<>();
-                movieList.getMovies().forEach(movieBasicInfo -> imdbIds.add(movieBasicInfo.getImdbId()));
-                ResponseModel<List<Movie>> listResponseModel = movieServiceProxy.getAllMoviesByImdbIds(imdbIds);
-                MovieListEnriched movieListEnriched = MovieListEnriched.builder().id(movieList.getId()).type(movieList.getType()).dateCreated(movieList.getDateCreated()).movies(listResponseModel.getData()).build();
+                MovieListEnriched movieListEnriched = movieListService.getMovieListEnriched(movieList);
                 everyMovieListEnriched.add(movieListEnriched);
             }
             return ResponseModel.builder().data(everyMovieListEnriched)
@@ -67,7 +53,7 @@ public class MovieListController {
         }
     }
     @GetMapping("/lists/{type}")
-    public ResponseModel<Object> getEveryMovieList(@PathVariable String type){
+    public ResponseModel<Object> getMovieListByType(@PathVariable String type){
 
         try {
                 MovieList movieList = movieListService.findMovieListByUserAndType(type,movieListService.getUserEmail());
@@ -76,10 +62,7 @@ public class MovieListController {
                             .validationModel(ValidationModel.builder().code(500).message("No movie list found of type: " + type).build())
                             .build();
                 }
-                List<String> imdbIds = new ArrayList<>();
-                movieList.getMovies().forEach(movieBasicInfo -> imdbIds.add(movieBasicInfo.getImdbId()));
-                ResponseModel<List<Movie>> listResponseModel = movieServiceProxy.getAllMoviesByImdbIds(imdbIds);
-                MovieListEnriched movieListEnriched = MovieListEnriched.builder().id(movieList.getId()).type(movieList.getType()).dateCreated(movieList.getDateCreated()).movies(listResponseModel.getData()).build();
+            MovieListEnriched movieListEnriched = movieListService.getMovieListEnriched(movieList);
             return ResponseModel.builder().data(movieListEnriched)
                     .validationModel(ValidationModel.builder().code(201).message("Success").build())
                     .build();
@@ -98,7 +81,6 @@ public class MovieListController {
             movieList.setUserEmail(movieListService.getUserEmail());
             MovieList movieListByUser = movieListService.findMovieListByUserAndType(movieList.getType(),movieList.getUserEmail());
             if(movieListByUser==null){
-                movieList.setDateCreated(new Date());
                 movieListService.saveMovieList(movieList);
                 MovieListEnriched movieListEnriched = MovieListEnriched.builder().id(movieList.getId()).type(movieList.getType()).dateCreated(movieList.getDateCreated()).movies(null).build();
                 return ResponseModel.builder().data(movieListEnriched)
@@ -117,14 +99,18 @@ public class MovieListController {
     }
 
     @PostMapping("/lists/{type}/add/imdbId/{imdbId}")
-    public ResponseModel<Object>  addToMovieList(@PathVariable String type, @PathVariable String imdbId){
+    public ResponseModel<Object> addToMovieList(@PathVariable String type, @PathVariable String imdbId){
         try {
             MovieList movieList = movieListService.findMovieListByUserAndType(type,movieListService.getUserEmail());
+            if(movieList==null){
+                movieList = movieListService.createMovieList(type);
+            }
             ResponseModel<Movie> movieResponseModel = movieServiceProxy.getMovieByImdbId(imdbId);
             Movie movie = movieResponseModel.getData();
             movieList.getMovies().add(new MovieBasicInfo(movie.getImdbID(), movie.getTitle(), movieList));
             movieListService.saveMovieList(movieList);
-            return ResponseModel.builder().data(movieList)
+            MovieListEnriched movieListEnriched = movieListService.getMovieListEnriched(movieList);
+            return ResponseModel.builder().data(movieListEnriched)
                     .validationModel(ValidationModel.builder().code(201).message("Success").build())
                     .build();
         } catch (Exception e) {
@@ -134,6 +120,7 @@ public class MovieListController {
                     .build();
         }
     }
+
 
     @DeleteMapping("/lists/{type}/delete/imdbId/{imdbId}")
     public ResponseModel<Object>  deleteFromMovieList(@PathVariable String type, @PathVariable String imdbId){
