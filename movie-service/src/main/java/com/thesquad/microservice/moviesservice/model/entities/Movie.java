@@ -12,6 +12,12 @@ import org.hibernate.annotations.BatchSize;
 import javax.persistence.*;
 import java.util.List;
 
+
+/**
+ * The class is mapping of the movie entity in the database it also serves a purpose as a json model
+ *
+ * @version 1.0
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

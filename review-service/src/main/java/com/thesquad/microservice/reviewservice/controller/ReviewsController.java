@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+/**
+ * The class is the controller for the reviews service
+ * It uses the builder of the {@link ResponseModel} for providing the response.
+ *
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1")
@@ -23,9 +28,18 @@ public class ReviewsController {
     IReviewsService reviewsService;
 
     @GetMapping("/reviews/movie/imdbId/{imdbId}")
-    public Movie getMovieByImdbId(@PathVariable String imdbId) {
+    public ResponseModel<Object> getMovieByImdbId(@PathVariable String imdbId) {
         Movie movie = movieServiceProxy.getMovieByImdbId(imdbId).getData();
-        return movie;
+        try {
+            return ResponseModel.builder().data(movie)
+                    .validationModel(ValidationModel.builder().code(201).message("Success").build())
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseModel.builder().data(movie)
+                    .validationModel(ValidationModel.builder().code(500).message("Error saving the review").build())
+                    .build();
+        }
     }
 
     @PostMapping("/reviews/new")

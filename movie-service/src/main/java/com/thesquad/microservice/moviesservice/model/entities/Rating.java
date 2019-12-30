@@ -9,7 +9,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
+/**
+ * The class is mapping of the review entity in the database it also serves a purpose as a json model
+ *
+ * @version 1.0
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

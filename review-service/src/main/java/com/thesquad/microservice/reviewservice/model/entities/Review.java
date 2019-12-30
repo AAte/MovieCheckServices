@@ -14,7 +14,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-
+/**
+ * The class is mapping of the review entity in the database
+ *
+ * @version 1.0
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

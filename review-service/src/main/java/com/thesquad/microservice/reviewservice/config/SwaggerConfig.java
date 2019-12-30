@@ -1,6 +1,5 @@
-package com.thesquad.microservice.listservice.config;
+package com.thesquad.microservice.reviewservice.config;
 
-import com.thesquad.microservice.listservice.controller.MovieListController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -10,7 +9,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * The class provides a swagger documentation for the {@link MovieListController}
+ * The class provides a swagger documentation for the {@link com.thesquad.microservice.reviewservice.controller.ReviewsController}
  *
  * @version 1.0
  */

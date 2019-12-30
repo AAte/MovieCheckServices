@@ -20,6 +20,13 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.Collections;
 
+/**
+ * Entry class for the api gateway service. It uses the netflix zuul implementation.
+ * It also has and oath2 security which is provided by Okta.
+ * The cors filter enables browsers to access the api gateway
+ *
+ * @version 1.0
+ */
 @EnableZuulProxy
 @EnableFeignClients
 @EnableCircuitBreaker

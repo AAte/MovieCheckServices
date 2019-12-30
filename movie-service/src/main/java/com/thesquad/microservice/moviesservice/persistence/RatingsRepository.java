@@ -6,7 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * A repository class for the {@link Rating} entity
+ *
+ * @version 1.0
+ */
 @Repository
 public interface RatingsRepository extends JpaRepository<Rating, Long> {
 

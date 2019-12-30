@@ -14,6 +14,12 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
+
+/**
+ * The class is json model for the Movie entity from the movie-service
+ *
+ * @version 1.0
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

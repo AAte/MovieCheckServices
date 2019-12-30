@@ -14,14 +14,16 @@ import com.thesquad.microservice.listservice.service.IMovieListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * A service class that extends the  {@link IMovieListService}
+ *
+ * @version 1.0
+ */
 @Service
 public class MovieListService implements IMovieListService {
 
@@ -115,6 +117,6 @@ public class MovieListService implements IMovieListService {
             this.saveMovieList(movieList);
         }
         return movieList;
-    };
+    }
 
 }

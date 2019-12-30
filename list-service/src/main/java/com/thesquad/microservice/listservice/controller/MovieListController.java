@@ -5,23 +5,21 @@ import com.thesquad.microservice.listservice.model.MovieBasicInfo;
 import com.thesquad.microservice.listservice.model.MovieList;
 import com.thesquad.microservice.listservice.model.ResponseModel;
 import com.thesquad.microservice.listservice.model.ValidationModel;
-import com.thesquad.microservice.listservice.model.exceptions.MovieListNotFoundException;
 import com.thesquad.microservice.listservice.model.json.Movie;
 import com.thesquad.microservice.listservice.model.json.MovieListEnriched;
 import com.thesquad.microservice.listservice.service.IMovieListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
+/**
+ * The class is the controller for the list service
+ * It uses the builder of the {@link ResponseModel} for providing the response.
+ *
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1")
@@ -111,7 +109,7 @@ public class MovieListController {
             Movie movie = movieResponseModel.getData();
             MovieBasicInfo movieBasicInfo = movieListService.findMovieBasicInfoByMovieList(movieList,imdbId);
             if(movieBasicInfo==null){
-                movieBasicInfo = new MovieBasicInfo(movie.getImdbID(), movie.getTitle(), movieList);;
+                movieBasicInfo = new MovieBasicInfo(movie.getImdbID(), movie.getTitle(), movieList);
                 movieList.getMovies().add(movieBasicInfo);
                 movieListService.saveMovieList(movieList);
             }
@@ -143,6 +141,7 @@ public class MovieListController {
                     .validationModel(ValidationModel.builder().code(500).message(e.getMessage()).build())
                     .build();
         }
+        
     }
 
 

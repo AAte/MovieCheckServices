@@ -1,11 +1,11 @@
-package com.thesquad.microservice.moviesservice.utility;
+package com.thesquad.microservice.moviesservice.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
 /**
- * Utility class for converting a JSON to a give class
+ * Utility class for converting a JSON to a given class
  *
  * @param <T> - The class that we wish to return
  * @author Atanas Asprovski

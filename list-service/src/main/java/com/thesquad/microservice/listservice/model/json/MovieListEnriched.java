@@ -1,13 +1,15 @@
 package com.thesquad.microservice.listservice.model.json;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
-
+/**
+ * The class is json model used for and enriched list of movies gathered from the movie-service
+ *
+ * @version 1.0
+ */
 @Getter
 @Builder
 public class MovieListEnriched {

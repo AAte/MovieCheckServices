@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-
+/**
+ * The class uses a feign client to contact the movies-service
+ * Feign client is used the abstract the calling of the api
+ *
+ * @version 1.0
+ */
 @FeignClient(name = "netfilx-zuul-api-gateway-server")
 @RibbonClient(name = "movies-service")
 public interface MovieServiceProxy {
 
     @GetMapping("movies-service/api/v1/movies/hello")
-    public String feignTest();
+    String feignTest();
 
     @GetMapping("movies-service/api/v1/movies/imdbId/{imdbId}")
     ResponseModel<Movie> getMovieByImdbId(@PathVariable String imdbId);

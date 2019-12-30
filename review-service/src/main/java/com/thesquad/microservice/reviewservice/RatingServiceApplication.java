@@ -11,6 +11,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 
+/**
+ * Entry class for the rating service.
+ * This services serves a function to store and add the reviews for the movies and retrieve them.
+ * This service also has authentication enabled as well.
+ *
+ * @version 1.0
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
@@ -19,6 +26,7 @@ public class RatingServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(RatingServiceApplication.class, args);
     }
+
     @Configuration
     static class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 

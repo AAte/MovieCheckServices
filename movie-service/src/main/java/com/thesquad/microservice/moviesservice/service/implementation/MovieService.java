@@ -5,7 +5,7 @@ import com.thesquad.microservice.moviesservice.model.entities.Movie;
 import com.thesquad.microservice.moviesservice.model.exceptions.MovieNotFoundException;
 import com.thesquad.microservice.moviesservice.persistence.MoviesRepository;
 import com.thesquad.microservice.moviesservice.service.IMovieService;
-import com.thesquad.microservice.moviesservice.utility.JsonUtils;
+import com.thesquad.microservice.moviesservice.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A service class that extends the  {@link IMovieService}
+ *
+ * @version 1.0
+ */
 @Service
 public class MovieService implements IMovieService {
 
@@ -36,7 +41,7 @@ public class MovieService implements IMovieService {
     @Async
     @Override
     public void saveMovie(Movie movie) {
-        if (moviesRepository.findByImdbID(movie.getImdbID()).isEmpty()) {
+        if (!moviesRepository.findByImdbID(movie.getImdbID()).isPresent()) {
             movie.getRatings().parallelStream().forEach(r -> r.setMovie(movie));
             moviesRepository.save(movie);
         }

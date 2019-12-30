@@ -11,7 +11,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 
-
+/**
+ * Entry class for the movie service.
+ * This service serves a function to store and retrieve movies from omdbApi and proxy them to the front end
+ * This service also has authentication enabled as well.
+ *
+ * @version 1.0
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients

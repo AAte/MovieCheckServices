@@ -7,10 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="netflix-eureka-naming-service" />
-        <module name="movie-service" />
         <module name="list-service" />
         <module name="zuul-api-gateway-service" />
+        <module name="netflix-eureka-naming-service" />
+        <module name="movie-service" />
         <module name="review-service" />
       </profile>
     </annotationProcessing>

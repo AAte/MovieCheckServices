@@ -12,6 +12,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * A service class that extends the  {@link IReviewsService}
+ *
+ * @version 1.0
+ */
 @Service
 public class ReviewsService implements IReviewsService {
 
@@ -21,7 +27,7 @@ public class ReviewsService implements IReviewsService {
     @Override
     public void saveReview(Review review) {
         review.setUserEmail(this.getUserEmail());
-        if(review.getDateEntered()==null){
+        if (review.getDateEntered() == null) {
             review.setDateEntered(new Date());
         }
         review.setDateModified(new Date());
@@ -40,18 +46,22 @@ public class ReviewsService implements IReviewsService {
         }
 
     }
+
     @Override
     public List<Review> findAllByImdbId(String imdbId){
         return reviewsRepository.findAllByImdbId(imdbId);
     }
+
     @Override
     public List<Review> findAllByMovieName(String movieName){
         return reviewsRepository.findAllByMovieNameIgnoreCase(movieName);
     }
+
     @Override
     public List<Review> findAllByUserEmail(String userEmail){
         return reviewsRepository.findAllByUserEmail(userEmail);
     }
+
     @Override
     public String getUserEmail() {
         return SecurityContextHolder.getContext().getAuthentication().getName();

@@ -10,7 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ * The class is the controller for the reviews service
+ * It uses the builder of the {@link ResponseModel} for providing the response.
+ *
+ * @version 1.0
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("api/v1")
@@ -18,12 +23,6 @@ public class MoviesController {
 
     @Autowired
     private IMovieService movieService;
-
-    @GetMapping("/movies/hello")
-    public String feignTest(){
-        return "Hello";
-    }
-
 
     @GetMapping("/movies/name={title}")
     public ResponseModel<Object> getMovieByName(@PathVariable String title) {
@@ -121,5 +120,5 @@ public class MoviesController {
                     .validationModel(ValidationModel.builder().code(500).message("Error fetching the movies").build())
                     .build();
         }
-    };
+    }
 }

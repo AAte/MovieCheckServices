@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+/**
+ * The class is mapping of the MovieBasicInfo entity
+ *
+ * @version 1.0
+ */
 @Entity
 @Data
 @NoArgsConstructor
